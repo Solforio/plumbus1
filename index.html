@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f6f2e7">
+<title>Mappa politica del Plumbus</title>
+<script>
+/* Diagnosi file: segnala con chiarezza file mancanti o di versioni diverse */
+window.atlasFail=function(u){(window.__atlasMissing=window.__atlasMissing||[]).push(String(u).split('/').slice(-2).join('/').split('?')[0]);};
+window.addEventListener('load',function(){
+  var need=['core','scene','profiles','stats','compare','app'],bad=(window.__atlasMissing||[]).slice();
+  need.forEach(function(k){ if(!window.__atlas||window.__atlas[k]!=='atlas-4') bad.push('js/atlas-'+k+'.js'); });
+  var cs=(getComputedStyle(document.documentElement).getPropertyValue('--atlas-css')||'').replace(/["'\s]/g,'');
+  if(cs!=='atlas-4') bad.push('css/atlas.css');
+  var pm=document.getElementById('panel-map');
+  if(pm&&(getComputedStyle(pm).getPropertyValue('--atlas-map-css')||'').replace(/["'\s]/g,'')!=='atlas-4') bad.push('css/atlas-map.css');
+  bad=bad.filter(function(v,i,a){return a.indexOf(v)===i;});
+  if(!bad.length) return;
+  var d=document.createElement('div');
+  d.setAttribute('role','alert');
+  d.style.cssText='position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;background:#7a1f1f;color:#fff;padding:14px 16px;border-radius:12px;font:14px/1.5 system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.3)';
+  d.textContent='Sito non aggiornato correttamente. File mancanti o di versione diversa: '+bad.join(', ')+'. Svuota il repository e carica di nuovo tutto lo ZIP (cartelle css, js, data, vendor comprese).';
+  document.body.appendChild(d);
+});
+</script>
+<link rel="stylesheet" href="css/atlas.css?v=atlas-4" onerror="atlasFail(this.href)">
+<link rel="stylesheet" href="css/atlas-map.css?v=atlas-4" onerror="atlasFail(this.href)">
+</head>
+<body>
+<a class="skip" href="#main-content">Vai al contenuto</a>
+<div class="topbar"><div class="brand"><span class="brand-symbol" aria-hidden="true">✳</span> PLUMBUS / ATLAS</div><span class="top-status"><i class="status-dot"></i>12 Axes · Edizione del gruppo</span></div>
+<header class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Piccolo gruppo. Grandi prospettive.</p>
+    <h1>Mappa politica del <span class="mark">Plumbus</span></h1>
+    <p class="lead">Undici prospettive, uno spazio comune. Esplora le posizioni, scopri le sfumature e confronta i profili. Senza ridurre le persone a un’etichetta.</p>
+  </div>
+  <div class="hero-art"><div class="orbit"></div><div class="orbit two"></div><svg class="plumbus" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+    <ellipse cx="60" cy="108" rx="34" ry="5" fill="#123026" opacity=".08"/>
+    <path d="M60 14c10 0 14 10 12 20 14 4 22 18 18 34-3 14-12 26-30 30-18-4-27-16-30-30-4-16 4-30 18-34-2-10 2-20 12-20z" fill="#e7a0b8" stroke="#123026" stroke-width="2.4"/>
+    <path d="M60 22c-4 0-6 6-5 12" fill="none" stroke="#123026" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="48" cy="62" r="3.2" fill="#123026"/><circle cx="72" cy="62" r="3.2" fill="#123026"/>
+    <path d="M50 76c6 5 14 5 20 0" fill="none" stroke="#123026" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="14" cy="26" r="3" fill="#0f7a57"/><circle cx="106" cy="40" r="2.4" fill="#c9962f"/><circle cx="100" cy="92" r="3" fill="#b5457c"/>
+  </svg><span class="art-caption">L’universo del Plumbus</span></div>
+</header>
+<div class="overview"><div class="overview-item"><b id="atlasCount">—</b> partecipanti</div><div class="overview-item"><b id="atlasCards">—</b> profili completi</div><div class="overview-item"><b>3</b> dimensioni</div></div>
+
+<nav class="tabs" role="tablist" aria-label="Sezioni">
+  <button role="tab" tabindex="0" class="tab is-active" id="tab-map" aria-controls="panel-map" data-tab="map" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7Z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg><span class="tab-label">Mappa 3D</span><span class="tab-num">01</span></button>
+  <button role="tab" tabindex="-1" class="tab" id="tab-profiles" aria-controls="panel-profiles" data-tab="profiles" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 22v-2a8 8 0 0 1 16 0v2"/></svg><span class="tab-label">Profili</span><span class="tab-num">02</span></button>
+  <button role="tab" tabindex="-1" class="tab" id="tab-stats" aria-controls="panel-stats" data-tab="stats" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10m8 10V4m8 16v-7"/></svg><span class="tab-label">Statistiche</span><span class="tab-num">03</span></button>
+  <button role="tab" tabindex="-1" class="tab" id="tab-compare" aria-controls="panel-compare" data-tab="compare" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18m-4-4 4 4-4 4M21 17H3m4-4-4 4 4 4"/></svg><span class="tab-label">Confronto</span><span class="tab-num">04</span></button>
+</nav>
+
+<div id="loadError" class="notice" hidden></div>
+
+<main id="main-content">
+<section aria-labelledby="tab-map" id="panel-map" class="panel is-active" role="tabpanel">
+<div class="section-heading"><div><h2>Esplora lo spazio politico</h2><p>Ruota, cambia prospettiva e seleziona una persona. I colori seguono l’asse scelto.</p></div><span class="section-index" aria-hidden="true">01</span></div>
+  <div class="mp-grid">
+    <section class="mp-card mp-main" aria-label="Mappa 3D">
+      <div class="mp-card-head"><h3>Atlante interattivo</h3><span class="mp-live" id="mpRenderStatus">Avvio 3D</span></div>
+      <div class="mp-seg" id="mpViews" role="group" aria-label="Prospettiva">
+        <button type="button" data-v="persp" aria-pressed="true">3D</button>
+        <button type="button" data-v="top" aria-pressed="false">Economia · Autorità</button>
+        <button type="button" data-v="front" aria-pressed="false">Economia · Valori</button>
+        <button type="button" data-v="side" aria-pressed="false">Autorità · Valori</button>
+      </div>
+      <div id="mpWrap">
+        <canvas id="mpCanvas" role="img" aria-label="Mappa politica tridimensionale dei partecipanti"></canvas>
+        <div id="mpTip"></div>
+        <div id="mpHint">Trascina per ruotare · pizzica per zoomare · tocca un punto</div>
+        <div id="mpMsg" role="alert"><div id="mpMsgText">Caricamento del 3D…</div><button type="button" class="mp-btn" id="mpRetry">Riprova</button></div>
+      </div>
+      <div class="mp-bottom"><div class="mp-toolbar"><span class="mp-lbl">Scala dei colori</span><button type="button" class="mp-btn" id="mpReset">Ripristina vista ↗</button></div><div class="mp-legend" id="mpLegend" aria-live="polite"></div>
+      <ul class="mp-axes" aria-label="Come leggere gli assi"><li><b>Economia</b><span>Socialismo ← → Capitalismo</span></li><li><b>Autorità</b><span>Libertario ← → Autoritario</span></li><li><b>Valori sociali</b><span>Progressismo ← → Tradizionalismo</span></li></ul>
+
+      <div class="mp-colorrow">
+        <p class="mp-lbl">Colora i punti per</p>
+        <div class="mp-seg" id="mpColor" role="group" aria-label="Criterio dei colori">
+          <button type="button" data-c="x" aria-pressed="true">Economia</button>
+          <button type="button" data-c="y" aria-pressed="false">Autorità</button>
+          <button type="button" data-c="z" aria-pressed="false">Valori sociali</button>
+        </div>
+      </div>
+<details class="mp-settings"><summary>Personalizza la mappa e i gesti</summary>      <div class="mp-ctl">
+        <label class="mp-chk"><input type="checkbox" id="mpNames" checked> Nomi</label>
+        <label class="mp-chk"><input type="checkbox" id="mpGrid" checked> Griglia</label>
+        <label class="mp-chk"><input type="checkbox" id="mpProj" checked> Proiezioni</label>
+        <label class="mp-chk"><input type="checkbox" id="mpLinks"> Affinità</label>
+        <label class="mp-chk"><input type="checkbox" id="mpSpin"> Rotazione lenta</label>
+        <label class="mp-chk"><input type="checkbox" id="mpLock"> Blocca grafico</label>
+      </div>      <p class="mp-note">Il colore indica solo la posizione sull’asse scelto (più intenso = più marcata), non partiti né giudizi. «Affinità» collega ogni persona alle due più vicine. Se sul telefono non riesci a scorrere la pagina, attiva «Blocca grafico».</p></details></div>
+    </section>
+    <aside class="mp-side">
+      <section class="mp-card mp-detailcard" aria-label="Dettagli" aria-live="polite">
+        <h2>La tua selezione</h2>
+        <div id="mpDetail"></div>
+      </section>
+      <section class="mp-card" aria-label="Partecipanti">
+        <h2>Il gruppo</h2>
+        <input id="mpSearch" class="mp-search" type="search" placeholder="Cerca per nome" aria-label="Cerca per nome" autocomplete="off">
+        <ul class="mp-list" id="mpList"></ul>
+        <button type="button" class="mp-btn mp-wide" id="mpAll">Mostra tutti</button>
+      </section>
+    </aside>
+  </div>
+</section>
+
+<section aria-labelledby="tab-profiles" id="panel-profiles" class="panel" role="tabpanel" hidden>
+<div class="section-heading"><div><h2>Oltre un singolo punto</h2><p>Dodici assi, risultati del test e letture descrittive: le sfumature di ogni profilo.</p></div><span class="section-index" aria-hidden="true">02</span></div>
+  <div id="profilesRoot"></div>
+</section>
+<section aria-labelledby="tab-stats" id="panel-stats" class="panel" role="tabpanel" hidden>
+<div class="section-heading"><div><h2>Il gruppo, in prospettiva</h2><p>Distribuzioni e tendenze descrittive. Un campione di amici, non una fotografia della società.</p></div><span class="section-index" aria-hidden="true">03</span></div>
+  <div id="statsRoot"></div>
+</section>
+<section aria-labelledby="tab-compare" id="panel-compare" class="panel" role="tabpanel" hidden>
+<div class="section-heading"><div><h2>Due profili, fianco a fianco</h2><p>Stessa direzione o prospettive diverse? Confronta le posizioni, non le persone.</p></div><span class="section-index" aria-hidden="true">04</span></div>
+  <div id="compareRoot"></div>
+</section>
+</main>
+
+<footer class="foot"><div><p class="foot-brand">PLUMBUS / ATLAS</p>
+  <p>La mappa rappresenta risultati di un questionario, non una diagnosi o un'attribuzione automatica di ideologia. Condividi risultati e nomi soltanto con il consenso degli interessati.</p>
+  </div><div><p>Posizioni stimate dagli screenshot (scala −10…+10, convenzione della visualizzazione). Nessun dato viene inviato a server.</p>
+</div></footer>
+
+<script src="js/atlas-core.js?v=atlas-4" onerror="atlasFail(this.src)"></script>
+<script src="js/atlas-scene.js?v=atlas-4" onerror="atlasFail(this.src)"></script>
+<script src="js/atlas-profiles.js?v=atlas-4" onerror="atlasFail(this.src)"></script>
+<script src="js/atlas-stats.js?v=atlas-4" onerror="atlasFail(this.src)"></script>
+<script src="js/atlas-compare.js?v=atlas-4" onerror="atlasFail(this.src)"></script>
+<script src="js/atlas-app.js?v=atlas-4" onerror="atlasFail(this.src)"></script>
+</body>
+</html>
